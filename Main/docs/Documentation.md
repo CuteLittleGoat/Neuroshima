@@ -33,7 +33,7 @@ Przycisk `.btn` ma komplet stanów:
 ## Responsywność
 - Panel główny: `width: min(880px, 100%)`.
 - Odstępy i rozmiary tekstu realizowane przez `clamp`, aby układ był czytelny od mobile do desktop.
-- Logo skalowane responsywnie: `clamp(120px, 16vw, 200px)`.
+- Logo skalowane do maksymalnej szerokości panelu (`width: 100%`, `max-width: 100%`) z zachowaniem proporcji (`height: auto`, `object-fit: contain`), z ograniczeniem wysokości do `min(50vh, 460px)`, aby mieściło się w widoku bez deformacji.
 
 ## Nawigacja
 Docelowy link przycisku:

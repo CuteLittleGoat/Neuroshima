@@ -60,10 +60,13 @@
     }
 
     .logo {
-      width: clamp(120px, 16vw, 200px);
+      width: 100%;
+      max-width: 100%;
+      max-height: min(50vh, 460px);
       height: auto;
       display: block;
       margin: 0 auto 20px;
+      object-fit: contain;
       filter: drop-shadow(0 6px 10px rgba(0,0,0,0.35));
     }
 
