@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neuroshima — Main</title>
+  <style>
+    :root {
+      --bg: #211a16;
+      --panel: #161210;
+      --panel2: #1d1714;
+      --text: #e2d5c4;
+      --text2: #bcab96;
+      --border: #8e4b2a;
+      --border-soft: rgba(142, 75, 42, 0.45);
+      --accent: #c4602b;
+      --accent-dark: #8f3f1b;
+      --glow: 0 0 22px rgba(196, 96, 43, 0.22);
+      --shadow: 0 10px 30px rgba(0,0,0,0.32);
+      --radius: 12px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      font-family: "Trebuchet MS", "Segoe UI", "Arial Narrow", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 18% 16%, rgba(170, 88, 36, 0.16), transparent 26%),
+        radial-gradient(circle at 82% 0%, rgba(107, 117, 71, 0.12), transparent 34%),
+        linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.28)),
+        var(--bg);
+    }
+
+    main {
+      width: min(880px, 100%);
+      background: linear-gradient(180deg, var(--panel2), var(--panel));
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(24px, 4vw, 40px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    main::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(140deg, rgba(255,255,255,0.03), transparent 30%);
+      mix-blend-mode: screen;
+    }
+
+    .logo {
+      width: clamp(120px, 16vw, 200px);
+      height: auto;
+      display: block;
+      margin: 0 auto 20px;
+      filter: drop-shadow(0 6px 10px rgba(0,0,0,0.35));
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(26px, 4vw, 40px);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-family: "Impact", "Arial Black", "Franklin Gothic Heavy", sans-serif;
+    }
+
+    p {
+      margin: 14px auto 30px;
+      max-width: 55ch;
+      color: var(--text2);
+      line-height: 1.5;
+      font-size: clamp(14px, 1.8vw, 16px);
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--text);
+      border: 1px solid var(--border-soft);
+      background: rgba(196, 96, 43, 0.10);
+      border-radius: 10px;
+      padding: 14px 26px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: transform 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03);
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      background: rgba(196, 96, 43, 0.16);
+      transform: translateY(-1px);
+      box-shadow: var(--glow);
+      outline: none;
+    }
+
+    .btn:active {
+      background: rgba(196, 96, 43, 0.24);
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <img class="logo" src="../Pliki/Logo.png" alt="Logo Neuroshima" />
+    <h1>Neuroshima — Main</h1>
+    <p>Strona główna modułów Neuroshimy. Wybierz poniżej moduł, aby przejść do narzędzia.</p>
+    <a class="btn" href="https://cutelittlegoat.github.io/Neuroshima/Kalkulator/index.html">Kalkulator</a>
+  </main>
+</body>
+</html>
