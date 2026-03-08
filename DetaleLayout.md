@@ -182,11 +182,6 @@ Mimo mocnego klimatu:
   - `rgba(196, 96, 43, 0.24)` (active)
 - Cień hover na przycisku:
   - `0 0 16px rgba(196, 96, 43, 0.18)`
-- Halftone overlay (`body::before`):
-  - raster 1: `rgba(0,0,0,0.22)` na siatce `8px 8px`
-  - raster 2: `rgba(222,165,105,0.13)` na siatce `14px 14px`
-  - raster 3: `rgba(0,0,0,0.20)` na siatce `20px 20px`
-  - maska wygaszająca: `radial-gradient(circle at 50% 30%, rgba(0,0,0,0.95), transparent 72%)`
 - Plamy rdzy (`body::after`):
   - rdza jasna: `rgba(149, 70, 28, 0.38)`, `rgba(160, 77, 34, 0.33)`
   - rdza ciemna: `rgba(65, 28, 15, 0.43)`, `rgba(58, 25, 13, 0.42)`
@@ -194,7 +189,6 @@ Mimo mocnego klimatu:
 
 ### 3) Layout i elementy UI
 - `body`: flex, centrowanie w pionie i poziomie, padding `24px`, `position: relative`, `isolation: isolate`.
-- `body::before`: fixed overlay z kropkowanym rasterem (halftone dot gradient), `pointer-events: none`, `z-index: -1`.
 - `body::after`: fixed overlay z nieregularnymi plamami imitującymi rdzawą blachę, `pointer-events: none`, `z-index: -1`.
 - `main`: karta o szerokości `min(880px, 100%)`, tło `linear-gradient(180deg, var(--panel2), var(--panel))`, ramka `2px solid --border`, cień `--shadow`, zaokrąglenia `--radius`, padding `clamp(24px, 4vw, 40px)`.
 - `.btn`: blokowy przycisk z animacją `transform` i `background` przy hover/active.

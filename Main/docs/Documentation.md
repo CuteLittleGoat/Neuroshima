@@ -11,30 +11,23 @@ Plik `Main/index.html` tworzy stronę startową projektu Neuroshima i udostępni
 - `a.btn` — przycisk/nawigacja do modułu Kalkulator.
 
 ## Struktura warstw wizualnych (background stack)
-Tło jest budowane warstwowo i składa się z trzech poziomów:
+Tło jest budowane warstwowo i składa się z dwóch poziomów:
 1. **Bazowe tło `body`**
    - `radial-gradient(circle at 18% 16%, rgba(170, 88, 36, 0.16), transparent 26%)`
    - `radial-gradient(circle at 82% 0%, rgba(107, 117, 71, 0.12), transparent 34%)`
    - `linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.28))`
    - kolor bazowy `#211a16` (`--bg`)
-2. **Warstwa halftone (`body::before`)**
-   - trzy kropkowane rastry tworzone przez `radial-gradient(circle at center, ... 0 1px, transparent 1px)`
-   - rozmiary rasterów: `8px 8px`, `14px 14px`, `20px 20px`
-   - pozycje: `0 0`, `22px 10px`, `-8px -14px`
-   - maskowanie: `mask-image: radial-gradient(circle at 50% 30%, rgba(0,0,0,0.95), transparent 72%)`
-   - krycie: `opacity: 0.42`
-3. **Warstwa plam rdzy (`body::after`)**
+2. **Warstwa plam rdzy (`body::after`)**
    - osiem radialnych plam (elipsy) rozmieszczonych przy krawędziach viewportu
    - dominujące kolory: `rgba(149, 70, 28, 0.38)`, `rgba(112, 52, 23, 0.35)`, `rgba(160, 77, 34, 0.33)`
    - ciemniejsze centra plam: `rgba(65, 28, 15, 0.43)` i pokrewne
    - wykończenie: `filter: blur(0.4px) saturate(108%)`, `opacity: 0.65`
 
-Pseudo-elementy są ustawione jako `position: fixed`, `inset: 0`, `pointer-events: none`, `z-index: -1`, a `body` ma `position: relative` i `isolation: isolate`, dzięki czemu warstwy działają jak dekoracja całej sceny i nie blokują interakcji.
+Pseudo-element rdzy jest ustawiony jako `position: fixed`, `inset: 0`, `pointer-events: none`, `z-index: -1`, a `body` ma `position: relative` i `isolation: isolate`, dzięki czemu dekoracja działa na całym tle i nie blokuje interakcji.
 
 ## Stylistyka i tokeny
 Stylistyka jest zgodna z `DetaleLayout.md`:
 - Tło bazowe: ciepłe, ciemne i przykurzone (`--bg`, gradienty radialne i liniowy).
-- Dodatkowa tekstura: halftone dot gradient (kropki rastra) wygaszany maską radialną.
 - Klimat materiału: nieregularne plamy korozji imitujące rdzawą blachę.
 - Panele: `--panel` i `--panel2` (`#161210`, `#1d1714`).
 - Kolor tekstu: `--text` (`#e2d5c4`) i pomocniczy `--text2` (`#bcab96`).
@@ -57,7 +50,7 @@ Przycisk `.btn` ma komplet stanów:
 - Panel główny: `width: min(880px, 100%)`.
 - Odstępy i rozmiary tekstu realizowane przez `clamp`, aby układ był czytelny od mobile do desktop.
 - Logo skalowane do maksymalnej szerokości panelu (`width: 100%`, `max-width: 100%`) z zachowaniem proporcji (`height: auto`, `object-fit: contain`), z ograniczeniem wysokości do `min(50vh, 460px)`, aby mieściło się w widoku bez deformacji.
-- Dekoracje tła (`::before`, `::after`) działają niezależnie od rozmiaru ekranu, bo są przypięte do całego viewportu (`position: fixed`).
+- Dekoracja tła (`::after`) działa niezależnie od rozmiaru ekranu, bo jest przypięta do całego viewportu (`position: fixed`).
 
 ## Nawigacja
 Docelowy link przycisku:
