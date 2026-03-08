@@ -25,17 +25,53 @@
     body {
       margin: 0;
       min-height: 100vh;
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 24px;
       font-family: "Trebuchet MS", "Segoe UI", "Arial Narrow", Arial, sans-serif;
       color: var(--text);
+      isolation: isolate;
       background:
         radial-gradient(circle at 18% 16%, rgba(170, 88, 36, 0.16), transparent 26%),
         radial-gradient(circle at 82% 0%, rgba(107, 117, 71, 0.12), transparent 34%),
         linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.28)),
         var(--bg);
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    body::before {
+      background:
+        radial-gradient(circle at center, rgba(0,0,0,0.22) 0 1px, transparent 1px),
+        radial-gradient(circle at center, rgba(222, 165, 105, 0.13) 0 1px, transparent 1px),
+        radial-gradient(circle at center, rgba(0,0,0,0.20) 0 1px, transparent 1px);
+      background-size: 8px 8px, 14px 14px, 20px 20px;
+      background-position: 0 0, 22px 10px, -8px -14px;
+      mask-image: radial-gradient(circle at 50% 30%, rgba(0,0,0,0.95), transparent 72%);
+      opacity: 0.42;
+    }
+
+    body::after {
+      background:
+        radial-gradient(ellipse 200px 120px at 8% 24%, rgba(149, 70, 28, 0.38), transparent 65%),
+        radial-gradient(ellipse 190px 120px at 90% 18%, rgba(112, 52, 23, 0.35), transparent 66%),
+        radial-gradient(ellipse 230px 140px at 84% 85%, rgba(160, 77, 34, 0.33), transparent 68%),
+        radial-gradient(ellipse 170px 110px at 20% 88%, rgba(118, 57, 25, 0.29), transparent 70%),
+        radial-gradient(ellipse 80px 52px at 11% 24%, rgba(65, 28, 15, 0.43), transparent 74%),
+        radial-gradient(ellipse 90px 58px at 94% 18%, rgba(58, 25, 13, 0.42), transparent 75%),
+        radial-gradient(ellipse 92px 62px at 80% 86%, rgba(60, 27, 14, 0.37), transparent 74%),
+        radial-gradient(ellipse 88px 54px at 25% 87%, rgba(56, 23, 11, 0.35), transparent 74%);
+      filter: blur(0.4px) saturate(108%);
+      opacity: 0.65;
     }
 
     main {
@@ -47,6 +83,7 @@
       padding: clamp(24px, 4vw, 40px);
       text-align: center;
       position: relative;
+      z-index: 1;
       overflow: hidden;
     }
 
