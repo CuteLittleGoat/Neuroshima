@@ -182,16 +182,16 @@ Mimo mocnego klimatu:
   - `rgba(196, 96, 43, 0.24)` (active)
 - Cień hover na przycisku:
   - `0 0 16px rgba(196, 96, 43, 0.18)`
+- Plamy rdzy (`body::after`):
+  - rdza jasna: `rgba(149, 70, 28, 0.38)`, `rgba(160, 77, 34, 0.33)`
+  - rdza ciemna: `rgba(65, 28, 15, 0.43)`, `rgba(58, 25, 13, 0.42)`
+  - wykończenie: `blur(0.4px)` + `saturate(108%)`
 
 ### 3) Layout i elementy UI
-- `body`: flex, centrowanie w pionie i poziomie, padding `24px`.
-- `main`: karta o szerokości `min(920px, 100%)`, tło `--panel`, ramka `2px solid --border`, cień `--shadow + --glow`, zaokrąglenia `--radius`, padding `32px 32px 28px`.
-- `.actions`: grid z kolumnami `repeat(auto-fit, minmax(220px, 1fr))` i odstępem `18px 20px`.
+- `body`: flex, centrowanie w pionie i poziomie, padding `24px`, `position: relative`, `isolation: isolate`.
+- `body::after`: fixed overlay z nieregularnymi plamami imitującymi rdzawą blachę, `pointer-events: none`, `z-index: -1`.
+- `main`: karta o szerokości `min(880px, 100%)`, tło `linear-gradient(180deg, var(--panel2), var(--panel))`, ramka `2px solid --border`, cień `--shadow`, zaokrąglenia `--radius`, padding `clamp(24px, 4vw, 40px)`.
 - `.btn`: blokowy przycisk z animacją `transform` i `background` przy hover/active.
-- Dopuszczalne delikatne tekstury tła:
-  - subtelny noise,
-  - faint scratches,
-  - niska przezroczystość.
 
 ### 4) Zwijanie/rozwijanie > 9 linii
 - Brak funkcjonalności clamp w module Main.

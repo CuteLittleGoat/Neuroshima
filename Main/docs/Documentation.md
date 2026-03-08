@@ -10,9 +10,25 @@ Plik `Main/index.html` tworzy stronę startową projektu Neuroshima i udostępni
 - `p` — krótki opis przeznaczenia strony.
 - `a.btn` — przycisk/nawigacja do modułu Kalkulator.
 
+## Struktura warstw wizualnych (background stack)
+Tło jest budowane warstwowo i składa się z dwóch poziomów:
+1. **Bazowe tło `body`**
+   - `radial-gradient(circle at 18% 16%, rgba(170, 88, 36, 0.16), transparent 26%)`
+   - `radial-gradient(circle at 82% 0%, rgba(107, 117, 71, 0.12), transparent 34%)`
+   - `linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.28))`
+   - kolor bazowy `#211a16` (`--bg`)
+2. **Warstwa plam rdzy (`body::after`)**
+   - osiem radialnych plam (elipsy) rozmieszczonych przy krawędziach viewportu
+   - dominujące kolory: `rgba(149, 70, 28, 0.38)`, `rgba(112, 52, 23, 0.35)`, `rgba(160, 77, 34, 0.33)`
+   - ciemniejsze centra plam: `rgba(65, 28, 15, 0.43)` i pokrewne
+   - wykończenie: `filter: blur(0.4px) saturate(108%)`, `opacity: 0.65`
+
+Pseudo-element rdzy jest ustawiony jako `position: fixed`, `inset: 0`, `pointer-events: none`, `z-index: -1`, a `body` ma `position: relative` i `isolation: isolate`, dzięki czemu dekoracja działa na całym tle i nie blokuje interakcji.
+
 ## Stylistyka i tokeny
 Stylistyka jest zgodna z `DetaleLayout.md`:
-- Tło: złożone z dwóch radialnych gradientów, ciemnego linear gradient i koloru bazowego `#211a16`.
+- Tło bazowe: ciepłe, ciemne i przykurzone (`--bg`, gradienty radialne i liniowy).
+- Klimat materiału: nieregularne plamy korozji imitujące rdzawą blachę.
 - Panele: `--panel` i `--panel2` (`#161210`, `#1d1714`).
 - Kolor tekstu: `--text` (`#e2d5c4`) i pomocniczy `--text2` (`#bcab96`).
 - Obramowania: `--border` (`#8e4b2a`) i `--border-soft`.
@@ -34,6 +50,7 @@ Przycisk `.btn` ma komplet stanów:
 - Panel główny: `width: min(880px, 100%)`.
 - Odstępy i rozmiary tekstu realizowane przez `clamp`, aby układ był czytelny od mobile do desktop.
 - Logo skalowane do maksymalnej szerokości panelu (`width: 100%`, `max-width: 100%`) z zachowaniem proporcji (`height: auto`, `object-fit: contain`), z ograniczeniem wysokości do `min(50vh, 460px)`, aby mieściło się w widoku bez deformacji.
+- Dekoracja tła (`::after`) działa niezależnie od rozmiaru ekranu, bo jest przypięta do całego viewportu (`position: fixed`).
 
 ## Nawigacja
 Docelowy link przycisku:
